@@ -1,0 +1,87 @@
+<div class="login-container">
+    <div class="login-card animate-in">
+      <div class="login-left">
+  
+        <div class="brand">🛒 Cartify</div>
+  
+        <h2>Create Account</h2>
+        <p class="subtitle">Join Cartify and start shopping smarter</p>
+  
+        <form [formGroup]="registerForm" (ngSubmit)="submit()">
+  
+          <input
+            type="text"
+            placeholder="Full name"
+            formControlName="name"
+          />
+  
+          <input
+            type="email"
+            placeholder="Email address"
+            formControlName="email"
+          />
+  
+          <input
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+  
+          <select formControlName="role">
+            <option value="BUYER">Buyer</option>
+            <option value="SELLER">Seller</option>
+          </select>
+  
+          <div class="two-col">
+            <input
+              type="text"
+              placeholder="Country"
+              formControlName="country"
+            />
+  
+            <input
+              type="text"
+              placeholder="Location"
+              formControlName="location"
+            />
+          </div>
+  
+          <input
+            type="text"
+            placeholder="Address"
+            formControlName="address"
+          />
+  
+          <input
+            type="text"
+            placeholder="Phone number"
+            formControlName="phoneNumber"
+          />
+  
+          <button
+  type="submit"
+  class="primary-btn"
+  [disabled]="registerForm.invalid || successMessage">
+  Register
+</button>
+  
+          <button
+            type="button"
+            class="secondary-btn"
+            routerLink="/auth/login">
+            Back to Login
+          </button>
+
+          <div class="auth-error" *ngIf="alreadyRegistered">
+            User already registered. Please login.
+          </div>
+          
+          <div class="auth-success" *ngIf="successMessage">
+            Registration successful! Redirecting to login…
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,58 @@
+<div class="page">
+
+  <!-- TOP NAV BAR -->
+  <div class="top-bar">
+    <h2 class="logo">Shop</h2>
+
+    <div class="actions">
+      <button (click)="goToCart()" class="nav-btn">
+        Cart
+        <span *ngIf="cartCount$ | async as count">
+          ({{ count }})
+        </span>
+      </button>
+      <button (click)="goToOrders()" class="nav-btn"> Orders</button>
+      <button (click)="logout()" class="logout-btn">Logout</button>
+    </div>
+    
+  </div>
+
+  <!-- PRODUCT GRID -->
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let p of products">
+
+      <!-- IMAGE -->
+      <div class="image-wrapper">
+        <img
+          [src]="p.imageUrl"
+          alt="{{ p.name }}"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- DETAILS -->
+      <div class="details">
+        <h3 class="name">{{ p.name }}</h3>
+      
+        <span class="category-pill">{{ p.category }}</span>
+      
+        <p class="price">
+          <span class="currency">$</span>{{ p.price }}
+        </p>
+      
+        <p class="stock" [class.low]="p.stock <= 3">
+          {{ p.stock > 0 ? ('In stock: ' + p.stock) : 'Out of stock' }}
+        </p>
+      
+        <button
+          class="add-btn"
+          [disabled]="p.stock === 0"
+          (click)="addToCart(p.id)">
+          {{ p.stock === 0 ? 'Out of Stock' : 'Add to Cart' }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
